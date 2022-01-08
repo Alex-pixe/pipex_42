@@ -6,40 +6,46 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:28:14 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/05 21:06:53 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/08 18:06:18 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
 
-int	check_arg(int argc, char **argv)
+int	check_arg(int argc, char **argv, char **envp, char **cmds)
 {
 	if (argc != 5)
 		return (1);
-	if (check_files(argv[1], argv[argc - 1]))
+	if (check_files(argv[1]))
+	{
+		check_commands((void *)0, argv[3], envp, cmds);
 		return (1);
-	if (check_commands())
+	}
+	if (check_commands(argv[2], argv[3], envp, cmds))
 		return (1);
 	return (0);
 }
 
-int	check_files(char *file1, char *file2)
+int	check_files(char *file1)
 {
 	errno = 0;
 	if (access(file1, F_OK | R_OK))
-		return (put_error(file1, errno));
-	if (access(file2, F_OK | W_OK))
-		return (put_error(file2, errno));
+		return (put_error(file1, errno, 0));
+//	if (access(file2, F_OK | W_OK))
+//		return (put_error(file2, errno, 0));
 	return (0);
 }
 
-int	put_error(char *name, int error)
+int	put_error(char *name, int error, char mod)
 {
 	char	*str;
 	int		length;
 
-	str = strerror(error);
+	if (!mod)
+		str = strerror(error);
+	else
+		str = "command not found";
 	length = ft_strlen(str);
 	write (2, "pipex: ", 7);
 	write (2, str, length);

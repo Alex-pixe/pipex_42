@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:17:51 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/05 21:06:03 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/08 20:21:13 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,19 @@
 # include <string.h>
 # include <errno.h>
 
-int	put_error(char *name, int error);
-int	check_arg(int argc, char **argv);
-int	check_files(char *file1, char *file2);
+# include <sys/types.h>
+# include <sys/wait.h>
+
+
+#include <stdio.h> //fix this
+
+int	put_error(char *name, int error, char mod);
+int	check_arg(int argc, char **argv, char **envp, char **cmds);
+int	check_files(char *file1);
+int	check_commands(char *cmd1, char *cmd2, char **envp, char **cmds);
+char	*search_path(char **env);
+void	clean_s(char **spath);
+int	check_rights(char *cmd, char **spath, char **cmds, int dx);
+char	**cmds_m(char **cmds,char mod);
 
 # endif

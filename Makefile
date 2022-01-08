@@ -6,7 +6,7 @@
 #    By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 19:40:05 by cbridget          #+#    #+#              #
-#    Updated: 2022/01/05 21:05:10 by cbridget         ###   ########.fr        #
+#    Updated: 2022/01/06 17:31:50 by cbridget         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 
 HEAD = hdrs/pipex.h
 
-SRC = pipex.c check_files.c
+SRC = pipex.c check_files.c check_commands.c
 
 OBJ = $(addprefix obj/,$(SRC:.c=.o))
 
