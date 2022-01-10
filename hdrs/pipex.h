@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:17:51 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/08 20:21:13 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:43:05 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <errno.h>
+# include <fcntl.h>
 
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -30,6 +31,6 @@ int	check_commands(char *cmd1, char *cmd2, char **envp, char **cmds);
 char	*search_path(char **env);
 void	clean_s(char **spath);
 int	check_rights(char *cmd, char **spath, char **cmds, int dx);
-char	**cmds_m(char **cmds,char mod);
+char	**cmds_m(char **cmds);
 
 # endif
