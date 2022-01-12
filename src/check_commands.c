@@ -44,6 +44,11 @@ int	check_rights(char *cmd, char **spath, char **cmds, int dx)
 	char	*tmp;
 
 	length = ft_strlen(cmd);
+	if (!(access(cmd, F_OK | X_OK)))
+	{
+		cmds[dx] = cmd;
+		return (0);
+	}
 	while (*spath)
 	{
 		length += ft_strlen(*spath);

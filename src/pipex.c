@@ -6,12 +6,16 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 18:59:35 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/10 20:52:09 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/12 20:51:36 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
+
+
+// check full path!!!!
+//ping -c 3 localhost | cat -e check this!
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -26,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 //	printf("%s", cmds[0]);
 //	return (0);
 	if (check_arg(argc, argv, envp, cmds))
-		return (1);
+		return (errno);
 //	printf("cmd1=%s, cmd2=%s\n", cmds[0], cmds[1]);
 
 //	int file2 = open(argv[4], O_WRONLY | O_CREAT 0666);
@@ -61,17 +65,21 @@ int	main(int argc, char **argv, char **envp)
 		close(file1);
 		close(pfd_test[1]);
 		execve(cmds[0], ar, envp);
-		return (0);
+		return (1);
 	}
-	testing = waitpid(testing, NULL, 0);
-	char *str = "hi";
-	read(pfd_test[0], str, 5);
-	printf("str= %s\n", str);
+//	testing = waitpid(testing, NULL, 0);
+//	char s;
+//	while (read(pfd_test[0], &s, 1))
+//	{
+//		printf("%c", s);
+//	}
+//	printf("str= %c\n", s);
 	pid_t testing2;
 
 	testing2 = fork();
 	if (testing2 == -1)
 		return (1);
+//	printf("here 2=%d\n", testing2);
 	if (testing2 == 0)
 	{
 		char *ar1[] = {cmds[1], NULL};
@@ -86,13 +94,25 @@ int	main(int argc, char **argv, char **envp)
 		close(file2);
 		close(pfd_test[0]);
 		execve(cmds[1], ar1, envp);
-		return (0);
+		return (1);
 	}
-//	testing = waitpid(testing, NULL, 0);
-	testing2 = waitpid(testing2, NULL, 0);
+
+	close(pfd_test[0]);
+	close(pfd_test[1]);
+
+	int check_r1;
+	int check_r2;
+	
+	testing = waitpid(testing, &check_r1, 0);
+	testing2 = waitpid(testing2, &check_r2, 0);
+	if (check_r2 || check_r1)
+	{
+		printf("error\n");
+		return (1);
+	}
 	printf("success! pidchild1=%d, pidchild2=%d\n", testing, testing2);
 	cmds_m(cmds);
-	return (0);
+	return (check_r2);
 }
 
 char	**cmds_m(char **cmds)
