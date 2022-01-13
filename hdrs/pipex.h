@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:17:51 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/12 19:39:23 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:46:58 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 
 
 #include <stdio.h> //fix this
+
+struct cmds{
+	char **cmds;
+	char **arco;
+};
 
 int	put_error(char *name, int error, char mod);
 int	check_arg(int argc, char **argv, char **envp, char **cmds);

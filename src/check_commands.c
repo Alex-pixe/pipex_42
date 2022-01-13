@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 21:15:06 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/06 17:55:13by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/13 17:02:10 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,38 @@
 
 int	check_commands(char *cmd1, char *cmd2, char **envp, char **cmds)
 {
-	int		ch;
+	int		err;
 	char	*path;
 	char	**spath;
 
 	path = search_path(envp);
 	if (!path)
 		return (1);
+	cmd1 = tr_cm(cmd1);
+	cmd2 = tr_cm(cmd2);
 	spath = ft_split(path, ':');
 	if (!spath)
 		return (1);
 	if (!cmd1)
-		ch = check_rights(cmd2, spath, cmds, 1);
+	{
+		if (access(cmd2, F_OK | X_OK))
+			err = check_rights(cmd2, spath, cmds, 1);
+	}
+	else if (!cmd2)
+	{
+		if (access(cmd1, F_OK | X_OK))
+			err = check_rights(cmd1, spath, cmds, 1);
+	}
 	else
 	{
-		ch = check_rights(cmd1, spath, cmds, 0);
-		ch = check_rights(cmd2, spath, cmds, 1);
+		if (access(cmd1, F_OK | X_OK))
+			err = check_rights(cmd1, spath, cmds, 0);
+		if (access(cmd2, F_OK | X_OK))
+			err = check_rights(cmd2, spath, cmds, 1);
 	}
 	clean_s(spath);
-	if (ch)
-		return (1);
+	if (err)
+		return (err);
 	return (0);
 }
 

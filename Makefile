@@ -6,7 +6,7 @@
 #    By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 19:40:05 by cbridget          #+#    #+#              #
-#    Updated: 2022/01/06 17:31:50 by cbridget         ###   ########.fr        #
+#    Updated: 2022/01/13 14:38:14 by cbridget         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CC = cc
 
 all : LIB $(NAME)
 
-LIB : 
+LIB :
 	@$(MAKE) bonus -C libft
 
 $(NAME) : $(OBJ)

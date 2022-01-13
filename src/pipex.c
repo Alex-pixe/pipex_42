@@ -6,31 +6,32 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 18:59:35 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/12 20:51:36 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:48:43 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
 
-
 // check full path!!!!
 //ping -c 3 localhost | cat -e check this!
 
 int	main(int argc, char **argv, char **envp)
 {
-	char **cmds;
-
-	cmds = NULL;
-	cmds = cmds_m(cmds);
-	if (!cmds)
-		return (1);
+//	char **arco;
+//	char **cmds;
+	int err;
+	struct cmds cmar;
+	
+	save_arco(&cmar);
 //	argc = 0;
 //	check_commands(argv[1], argv[2], envp, cmds);
 //	printf("%s", cmds[0]);
 //	return (0);
-	if (check_arg(argc, argv, envp, cmds))
-		return (errno);
+
+	err = check_arg(argc, argv, envp, cmds);
+	if (err)
+		return (err);
 //	printf("cmd1=%s, cmd2=%s\n", cmds[0], cmds[1]);
 
 //	int file2 = open(argv[4], O_WRONLY | O_CREAT 0666);

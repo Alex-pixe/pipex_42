@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:28:14 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/12 19:44:19 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/13 15:30:48 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,46 @@
 
 int	check_arg(int argc, char **argv, char **envp, char **cmds)
 {
+	int	err;
+
 	if (argc != 5)
 		return (1);
-	if (check_files(argv[1], argv[argc - 1]))
+	err = check_files(argv[1], argv[argc - 1]);
+	if (err)
 	{
-		check_commands((void *)0, argv[3], envp, cmds);
-		return (1);
+		if (err == 1)
+		{
+			check_commands((void *)0, argv[3], envp, cmds);
+			return (errno);
+		}
+		else if (err == 2)
+		{
+			check_commands(argv[2], (void *)0, envp, cmds);
+			return (errno);
+		}
+		else
+			return (errno);
 	}
 	if (check_commands(argv[2], argv[3], envp, cmds))
-		return (1);
+		return (errno);
 	return (0);
 }
 
 int	check_files(char *file1, char *file2)
 {
-	errno = 0;
+	int	err;
+
+	err = 0;
 	if (access(file1, F_OK | R_OK))
-		return (put_error(file1, errno, 0));
+		err += 1;
+//		return (put_error(file1, errno, 0));
 	if (!access(file2, F_OK))
 	{
 		if (access(file2, W_OK))
-			return (put_error(file2, errno, 0));
+			err += 2;
+//			return (put_error(file2, errno, 0));
 	}
-	return (0);
+	return (err);
 }
 
 int	put_error(char *name, int error, char mod)
