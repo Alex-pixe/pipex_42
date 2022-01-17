@@ -6,43 +6,36 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 21:15:06 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/13 17:02:10 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:42:07 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
 
-int	check_commands(char *cmd1, char *cmd2, char **envp, char **cmds)
+int	check_commands(char **argv, char **envp, char ***cmar, int mod)
 {
 	int		err;
-	char	*path;
+//	char	*path;
 	char	**spath;
 
-	path = search_path(envp);
-	if (!path)
-		return (1);
-	cmd1 = tr_cm(cmd1);
-	cmd2 = tr_cm(cmd2);
-	spath = ft_split(path, ':');
+	err = save_arco(argv, cmar);
+	if (err)
+		return (err);
+//	path = search_path(envp);
+//	if (!path)
+//		return (1);
+	spath = ft_split(search_path(envp), ':');
 	if (!spath)
 		return (1);
-	if (!cmd1)
-	{
-		if (access(cmd2, F_OK | X_OK))
-			err = check_rights(cmd2, spath, cmds, 1);
-	}
-	else if (!cmd2)
-	{
-		if (access(cmd1, F_OK | X_OK))
-			err = check_rights(cmd1, spath, cmds, 1);
-	}
+	if (mod == 1)
+		err = check_rights(1, spath, cmar);
+	else if (mod == 2)
+		err = check_rights(0, spath, cmar);
 	else
 	{
-		if (access(cmd1, F_OK | X_OK))
-			err = check_rights(cmd1, spath, cmds, 0);
-		if (access(cmd2, F_OK | X_OK))
-			err = check_rights(cmd2, spath, cmds, 1);
+		err = check_rights(0, spath, cmar);
+		err = check_rights(1, spath, cmar);
 	}
 	clean_s(spath);
 	if (err)
@@ -50,36 +43,52 @@ int	check_commands(char *cmd1, char *cmd2, char **envp, char **cmds)
 	return (0);
 }
 
-int	check_rights(char *cmd, char **spath, char **cmds, int dx)
+int	check_rights(int num, char **spath, char ***cmar)
 {
 	int		length;
 	char	*tmp;
 
-	length = ft_strlen(cmd);
-	if (!(access(cmd, F_OK | X_OK)))
-	{
-		cmds[dx] = cmd;
+	length = ft_strlen(*cmar[num]);
+	length += ft_strlen(*spath);
+	if (!(access(*cmar[num], F_OK | X_OK)))
 		return (0);
-	}
 	while (*spath)
 	{
-		length += ft_strlen(*spath);
 		tmp = (char *)malloc(sizeof(char) * (length + 2));
 		if (!tmp)
 			return (1);
 		ft_strlcpy(tmp, *spath, ft_strlen(*spath) + 1);
 		ft_strlcat(tmp, "/", ft_strlen(tmp) + 2);
-		ft_strlcat(tmp, cmd, length + 2);
+		ft_strlcat(tmp, *cmar[num], length + 2);
 		if (!(access(tmp, F_OK | X_OK)))
 		{
-			cmds[dx] = tmp;
+			free(*cmar[num]);
+			*cmar[num] = tmp;
 			return (0);
 		}
 		free(tmp);
 		spath++;
 	}
-	put_error(cmd, 0, 1);
+	put_error(*cmar[num], 0);
 	return (1);
+}
+
+int	save_arco(char **argv, char ***cmar)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 2;
+	while (i < 2)
+	{
+		cmar[i] = ft_split(argv[j], ' ');
+		if (!cmar[i])
+			return (1);
+		i++;
+		j++;
+	}
+	return (0);
 }
 
 char	*search_path(char **env)

@@ -6,14 +6,14 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:28:14 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/13 15:30:48 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:08:30 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
 
-int	check_arg(int argc, char **argv, char **envp, char **cmds)
+int	check_arg(int argc, char **argv, char **envp, char ***cmar)
 {
 	int	err;
 
@@ -24,18 +24,16 @@ int	check_arg(int argc, char **argv, char **envp, char **cmds)
 	{
 		if (err == 1)
 		{
-			check_commands((void *)0, argv[3], envp, cmds);
-			return (errno);
-		}
-		else if (err == 2)
-		{
-			check_commands(argv[2], (void *)0, envp, cmds);
+			check_commands(argv, envp, cmar, err);
 			return (errno);
 		}
 		else
+		{
+			check_commands(argv, envp, cmar, err);
 			return (errno);
+		}
 	}
-	if (check_commands(argv[2], argv[3], envp, cmds))
+	if (check_commands(argv, envp, cmar, 0))
 		return (errno);
 	return (0);
 }
@@ -46,23 +44,27 @@ int	check_files(char *file1, char *file2)
 
 	err = 0;
 	if (access(file1, F_OK | R_OK))
+	{
 		err += 1;
-//		return (put_error(file1, errno, 0));
-	if (!access(file2, F_OK))
+		put_error(file1, errno);
+	}
+	else if (!access(file2, F_OK))
 	{
 		if (access(file2, W_OK))
+		{
 			err += 2;
-//			return (put_error(file2, errno, 0));
+			put_error(file2, errno);
+		}
 	}
 	return (err);
 }
 
-int	put_error(char *name, int error, char mod)
+int	put_error(char *name, int error)
 {
 	char	*str;
 	int		length;
 
-	if (!mod)
+	if (error)
 		str = strerror(error);
 	else
 		str = "command not found";

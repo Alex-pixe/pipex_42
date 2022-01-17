@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:17:51 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/13 16:46:58 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/17 16:22:44 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@
 
 #include <stdio.h> //fix this
 
-struct cmds{
-	char **cmds;
-	char **arco;
-};
-
-int	put_error(char *name, int error, char mod);
-int	check_arg(int argc, char **argv, char **envp, char **cmds);
+int	save_arco(char **argv, char ***cmar);
+int	put_error(char *name, int error);
+int	check_arg(int argc, char **argv, char **envp, char ***cmar);
 int	check_files(char *file1, char *file2);
-int	check_commands(char *cmd1, char *cmd2, char **envp, char **cmds);
+int	check_commands(char **argv, char **envp, char ***cmar, int mod);
 char	*search_path(char **env);
 void	clean_s(char **spath);
-int	check_rights(char *cmd, char **spath, char **cmds, int dx);
-char	**cmds_m(char **cmds);
+int	check_rights(int num, char **spath, char ***cmar);
+char	***cr_cmar(char ***cmar);
+
+void	exc_cmd(char *nfile, char **cmar, char **envp, int *pfd);
+void	exc_cmd2(char *nfile, char **cmar, char **envp, int *pfd);
+int	fprocess(char **argv, char ***cmar, char **envp);
 
 # endif
