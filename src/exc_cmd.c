@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:56:32 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/18 13:47:35 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/18 16:18:58 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	exc_cmd2(char *nfile, char **cmar, char **envp, int *pfd)
 	int	fd;
 
 	close(pfd[1]);
-	fd = open(nfile, O_WRONLY | O_CREAT, 0666);
+	fd = open(nfile, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (fd == -1)
 		exit(EXIT_FAILURE);
 	dup2(fd, STDOUT_FILENO);
