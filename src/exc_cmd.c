@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:56:32 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/17 16:29:20 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/18 13:47:35 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	exc_cmd(char *nfile, char **cmar, char **envp, int *pfd)
 
 void	exc_cmd2(char *nfile, char **cmar, char **envp, int *pfd)
 {
-	int fd;
+	int	fd;
 
 	close(pfd[1]);
 	fd = open(nfile, O_WRONLY | O_CREAT, 0666);
@@ -47,9 +47,9 @@ void	exc_cmd2(char *nfile, char **cmar, char **envp, int *pfd)
 
 int	fprocess(char **argv, char ***cmar, char **envp)
 {
-	int pfd[2];
-	int err;
-	pid_t ptmp;
+	int		pfd[2];
+	int		err;
+	pid_t	ptmp;
 
 	if (pipe(pfd))
 		return (1);

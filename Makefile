@@ -6,7 +6,7 @@
 #    By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 19:40:05 by cbridget          #+#    #+#              #
-#    Updated: 2022/01/13 14:38:14 by cbridget         ###   ########.fr        #
+#    Updated: 2022/01/18 13:59:31 by cbridget         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ NAME = pipex
 
 HEAD = hdrs/pipex.h
 
-SRC = pipex.c check_files.c check_commands.c
+SRC = pipex.c check_files.c check_commands.c exc_cmd.c
 
 OBJ = $(addprefix obj/,$(SRC:.c=.o))
 
 BUILD_FOLDER := $(shell mkdir -p obj)
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g3
 
 CC = cc
 

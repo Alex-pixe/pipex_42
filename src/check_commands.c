@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 21:15:06 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/17 14:42:07 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/18 14:16:08 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@
 int	check_commands(char **argv, char **envp, char ***cmar, int mod)
 {
 	int		err;
-//	char	*path;
 	char	**spath;
 
 	err = save_arco(argv, cmar);
 	if (err)
 		return (err);
-//	path = search_path(envp);
-//	if (!path)
-//		return (1);
 	spath = ft_split(search_path(envp), ':');
 	if (!spath)
 		return (1);
@@ -45,21 +41,15 @@ int	check_commands(char **argv, char **envp, char ***cmar, int mod)
 
 int	check_rights(int num, char **spath, char ***cmar)
 {
-	int		length;
 	char	*tmp;
 
-	length = ft_strlen(*cmar[num]);
-	length += ft_strlen(*spath);
 	if (!(access(*cmar[num], F_OK | X_OK)))
 		return (0);
 	while (*spath)
 	{
-		tmp = (char *)malloc(sizeof(char) * (length + 2));
+		tmp = cr_path(num, spath, cmar);
 		if (!tmp)
 			return (1);
-		ft_strlcpy(tmp, *spath, ft_strlen(*spath) + 1);
-		ft_strlcat(tmp, "/", ft_strlen(tmp) + 2);
-		ft_strlcat(tmp, *cmar[num], length + 2);
 		if (!(access(tmp, F_OK | X_OK)))
 		{
 			free(*cmar[num]);
@@ -71,6 +61,22 @@ int	check_rights(int num, char **spath, char ***cmar)
 	}
 	put_error(*cmar[num], 0);
 	return (1);
+}
+
+char	*cr_path(int num, char **spath, char ***cmar)
+{
+	char	*tmp;
+	int		length;
+
+	length = ft_strlen(*cmar[num]);
+	length += ft_strlen(*spath);
+	tmp = (char *)malloc(sizeof(char) * (length + 2));
+	if (!tmp)
+		return ((void *)0);
+	ft_strlcpy(tmp, *spath, ft_strlen(*spath) + 1);
+	ft_strlcat(tmp, "/", ft_strlen(tmp) + 2);
+	ft_strlcat(tmp, *cmar[num], length + 2);
+	return (tmp);
 }
 
 int	save_arco(char **argv, char ***cmar)
@@ -110,18 +116,4 @@ char	*search_path(char **env)
 		env++;
 	}
 	return ((void *)0);
-//	return ("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/X11/bin");
-}
-
-void	clean_s(char **spath)
-{
-	char	**tmp;
-
-	tmp = spath;
-	while (*tmp)
-	{
-		free(*tmp);
-		tmp++;
-	}
-	free(spath);
 }

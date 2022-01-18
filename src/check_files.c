@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:28:14 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/17 14:08:30 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:36:12 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	check_arg(int argc, char **argv, char **envp, char ***cmar)
 int	check_files(char *file1, char *file2)
 {
 	int	err;
+	int	fd;
 
 	err = 0;
 	if (access(file1, F_OK | R_OK))
@@ -55,6 +56,11 @@ int	check_files(char *file1, char *file2)
 			err += 2;
 			put_error(file2, errno);
 		}
+	}
+	if (access(file2, F_OK))
+	{
+		fd = open(file2, O_CREAT, 0666);
+		close(fd);
 	}
 	return (err);
 }
