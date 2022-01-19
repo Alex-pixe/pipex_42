@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 14:56:32 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/19 12:15:28 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:03:23 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	fprocess(char **argv, char ***cmar, char **envp)
 	int		err;
 	pid_t	ptmp;
 
-	if (pipe(pfd))
+	if (pipe(pfd) < 0)
 		return (1);
 	ptmp = fork();
 	if (ptmp == -1)
