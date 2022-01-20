@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 18:59:35 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/18 16:07:49 by cbridget         ###   ########.fr       */
+/*   Created: 2022/01/19 14:13:35 by cbridget          #+#    #+#             */
+/*   Updated: 2022/01/20 17:00:31 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 #include "libft.h"
 
 int	main(int argc, char **argv, char **envp)
@@ -18,21 +18,23 @@ int	main(int argc, char **argv, char **envp)
 	char	***cmar;
 	int		err;
 
-	cmar = cr_cmar((void *)0);
+	cmar = cr_cmar((void *)0, argc);
+	if (ch_hdoc())
+		return (pr_hdoc(argv, envp, cmar));
 	if (!cmar)
 		return (1);
 	err = check_arg(argc, argv, envp, cmar);
 	if (err)
 	{
-		cr_cmar(cmar);
+		cr_cmar(cmar, argc);
 		return (err);
 	}
-	err = fprocess(argv, cmar, envp);
-	cr_cmar(cmar);
+	err = fprocess(argc, argv, cmar, envp);
+	cr_cmar(cmar, argc);
 	return (err);
 }
 
-char	***cr_cmar(char ***cmar)
+char	***cr_cmar(char ***cmar, int argc)
 {
 	char	***tmp;
 	int		i;
@@ -40,16 +42,19 @@ char	***cr_cmar(char ***cmar)
 	i = 0;
 	if (!cmar)
 	{
-		tmp = malloc(sizeof(char ***) * 2);
+		tmp = malloc(sizeof(char ***) * (argc - 3));
 		if (!tmp)
 			return ((void *)0);
-		tmp[0] = (void *)0;
-		tmp[1] = (void *)0;
+		while (i < (argc - 3))
+		{
+			tmp[i] = (void *)0;
+			i++;
+		}
 		return (tmp);
 	}
 	else
 	{
-		while (i < 2)
+		while (i < (argc - 3))
 		{
 			clean_s(cmar[i]);
 			i++;

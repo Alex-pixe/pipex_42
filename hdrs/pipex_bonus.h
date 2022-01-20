@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 19:17:51 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/19 12:52:14 by cbridget         ###   ########.fr       */
+/*   Created: 2022/01/19 14:12:58 by cbridget          #+#    #+#             */
+/*   Updated: 2022/01/20 13:46:57 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <unistd.h>
 # include <string.h>
@@ -22,7 +22,7 @@
 
 # include <stdlib.h>
 
-int		save_arco(char **argv, char ***cmar);
+int		save_arco(int argc, char **argv, char ***cmar);
 int		put_error(char *name, int error);
 int		check_arg(int argc, char **argv, char **envp, char ***cmar);
 int		check_files(char *file1, char *file2);
@@ -30,10 +30,14 @@ int		check_commands(char **argv, char **envp, char ***cmar, int mod);
 char	*search_path(char **env);
 void	clean_s(char **spath);
 int		check_rights(int num, char **spath, char ***cmar);
-char	***cr_cmar(char ***cmar);
+char	***cr_cmar(char ***cmar, int argc);
 void	exc_cmd(char *nfile, char **cmar, char **envp, int *pfd);
 void	exc_cmd2(char *nfile, char **cmar, char **envp, int *pfd);
-int		fprocess(char **argv, char ***cmar, char **envp);
+int		fprocess(int argc, char **argv, char ***cmar, char **envp);
 char	*cr_path(int num, char **spath, char ***cmar);
+
+int	save_argc(char **argv);
+int	**cr_pfd(int **pfds, int argc);
+void	cl_pfds(int **pfds, int j);
 
 #endif
