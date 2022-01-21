@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:12:58 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/20 13:46:57 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:27:51 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-# include <stdlib.h>
+# include <stdio.h>
 
 int		save_arco(int argc, char **argv, char ***cmar);
 int		put_error(char *name, int error);
@@ -39,5 +39,9 @@ char	*cr_path(int num, char **spath, char ***cmar);
 int	save_argc(char **argv);
 int	**cr_pfd(int **pfds, int argc);
 void	cl_pfds(int **pfds, int j);
+char	*my_realloc(char *str, int *size);
+char	*save_doc(char **argv);
+int	pr_hdoc(int argc, char **argv, char **envp, char ***cmar);
+int	ch_hdoc(int argc, char **argv);
 
 #endif

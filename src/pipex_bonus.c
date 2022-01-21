@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:13:35 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/20 17:00:31 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/21 16:28:33 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	main(int argc, char **argv, char **envp)
 	char	***cmar;
 	int		err;
 
+	if (ch_hdoc(argc, argv))
+		return (pr_hdoc(argc, argv, envp, (void *)0));
 	cmar = cr_cmar((void *)0, argc);
-	if (ch_hdoc())
-		return (pr_hdoc(argv, envp, cmar));
 	if (!cmar)
 		return (1);
 	err = check_arg(argc, argv, envp, cmar);

@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:14:44 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/20 14:27:06 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/21 16:22:19 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ int	save_arco(int argc, char **argv, char ***cmar)
 	int	j;
 
 	i = 0;
-	j = 2;
+	if (ch_hdoc(argc, argv))
+		j = 3;
+	else
+		j = 2;
 	while (i < (argc - 3))
 	{
 		cmar[i] = ft_split(argv[j], ' ');
@@ -133,5 +136,7 @@ int	save_argc(char **argv)
 	argc = 0;
 	while (argv[argc])
 		argc++;
+	if (ch_hdoc(argc, argv))
+		argc--;
 	return (argc);
 }
