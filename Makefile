@@ -6,7 +6,7 @@
 #    By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 19:40:05 by cbridget          #+#    #+#              #
-#    Updated: 2022/01/21 14:18:59 by cbridget         ###   ########.fr        #
+#    Updated: 2022/01/22 21:39:53 by cbridget         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ HEAD_B = hdrs/pipex_bonus.h
 
 SRC = pipex.c check_files.c check_commands.c exc_cmd.c
 
-SRC_B = pipex_bonus.c check_files_bonus.c check_commands_bonus.c exc_cmd_bonus.c her_doc_bonus.c
+SRC_B = pipex_bonus.c check_files_bonus.c check_commands_bonus.c exc_cmd_bonus.c\
+her_doc_bonus.c her_doc2_bonus.c her_doc3_bonus.c check_commands2_bonus.c\
+exc_cmd2_bonus.c
 
 OBJ = $(addprefix obj/,$(SRC:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:14:44 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/21 16:22:19 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/22 20:39:14 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 int	check_commands(char **argv, char **envp, char ***cmar, int mod)
 {
-	int		i;
 	int		err;
 	int		argc;
 	char	**spath;
 
-	i = 0;
 	argc = save_argc(argv);
 	err = save_arco(argc, argv, cmar);
 	if (err)
@@ -28,6 +26,17 @@ int	check_commands(char **argv, char **envp, char ***cmar, int mod)
 	spath = ft_split(search_path(envp), ':');
 	if (!spath)
 		return (1);
+	err = check_commands2(mod, argc, spath, cmar);
+	clean_s(spath);
+	return (err);
+}
+
+int	check_commands2(int mod, int argc, char **spath, char ***cmar)
+{
+	int	i;
+	int	err;
+
+	i = 0;
 	if (mod == 1)
 		err = check_rights(argc - 4, spath, cmar);
 	else if (mod == 2)
@@ -40,10 +49,7 @@ int	check_commands(char **argv, char **envp, char ***cmar, int mod)
 			i++;
 		}
 	}
-	clean_s(spath);
-	if (err)
-		return (err);
-	return (0);
+	return (err);
 }
 
 int	check_rights(int num, char **spath, char ***cmar)
@@ -107,7 +113,7 @@ int	save_arco(int argc, char **argv, char ***cmar)
 	return (0);
 }
 
-char	*search_path(char **env)
+/*char	*search_path(char **env)
 {
 	int		i;
 	char	*src;
@@ -126,7 +132,6 @@ char	*search_path(char **env)
 		env++;
 	}
 	return ((void *)0);
-//	return "/Users/cbridget/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/usr/local/munki:/opt/X11/bin:~/.dotnet/tools";
 }
 
 int	save_argc(char **argv)
@@ -139,4 +144,4 @@ int	save_argc(char **argv)
 	if (ch_hdoc(argc, argv))
 		argc--;
 	return (argc);
-}
+}*/

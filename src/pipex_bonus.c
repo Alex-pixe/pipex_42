@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:13:35 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/21 16:28:33 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/22 21:47:34 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,21 @@ char	***cr_cmar(char ***cmar, int argc)
 		return (tmp);
 	}
 	else
-	{
-		while (i < (argc - 3))
-		{
-			clean_s(cmar[i]);
-			i++;
-		}
-		free(cmar);
-	}
+		cr_cmar2(cmar, argc);
 	return ((void *)0);
+}
+
+void	cr_cmar2(char ***cmar, int argc)
+{
+	int	i;
+
+	i = 0;
+	while (i < (argc - 3))
+	{
+		clean_s(cmar[i]);
+		i++;
+	}
+	free(cmar);
 }
 
 void	clean_s(char **spath)
