@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:12:58 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/22 21:49:19 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/22 22:06:06 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-
-# include <stdio.h>
 
 int		save_arco(int argc, char **argv, char ***cmar);
 int		put_error(char *name, int error);
