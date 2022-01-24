@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_commands_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:14:44 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/22 20:39:14 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:31:55 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	save_arco(int argc, char **argv, char ***cmar)
 	int	j;
 
 	i = 0;
-	if (ch_hdoc(argc, argv))
+	if (ch_hdoc(argc + 1, argv))
 		j = 3;
 	else
 		j = 2;

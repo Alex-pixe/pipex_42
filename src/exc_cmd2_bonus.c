@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exc_cmd2_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 21:37:55 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/22 21:38:40 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:14:55 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	fprocess_h2(char **argv, char ***cmar, char **envp, int **pfds)
 				envp, pfds[argc - 5]);
 	}
 	j++;
-	printf("%d, j = %d\n", argc, j);
 }
 
 int	**fprocess_h(int argc)

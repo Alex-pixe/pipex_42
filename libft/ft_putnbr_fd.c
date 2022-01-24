@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 18:31:16 by cbridget          #+#    #+#             */
-/*   Updated: 2021/10/11 15:47:51 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:11:36 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	long long	number;
 	size_t		discharge;
-	size_t		i;
 	char		res;
 
 	number = n;
 	discharge = 1;
-	i = -1;
 	check_s(number, &discharge);
 	if (n < 0)
 	{
