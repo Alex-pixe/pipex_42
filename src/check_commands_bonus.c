@@ -6,14 +6,14 @@
 /*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:14:44 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/24 21:31:55 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:53:19 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 #include "libft.h"
 
-int	check_commands(char **argv, char **envp, char ***cmar, int mod)
+int	check_commands(char **argv, char **envp, char ***cmar)
 {
 	int		err;
 	int		argc;
@@ -26,28 +26,21 @@ int	check_commands(char **argv, char **envp, char ***cmar, int mod)
 	spath = ft_split(search_path(envp), ':');
 	if (!spath)
 		return (1);
-	err = check_commands2(mod, argc, spath, cmar);
+	err = check_commands2(argc, spath, cmar);
 	clean_s(spath);
 	return (err);
 }
 
-int	check_commands2(int mod, int argc, char **spath, char ***cmar)
+int	check_commands2(int argc, char **spath, char ***cmar)
 {
 	int	i;
 	int	err;
 
 	i = 0;
-	if (mod == 1)
-		err = check_rights(argc - 4, spath, cmar);
-	else if (mod == 2)
-		err = check_rights(0, spath, cmar);
-	else
+	while (i < (argc - 3))
 	{
-		while (i < (argc - 3))
-		{
-			err = check_rights(i, spath, cmar);
-			i++;
-		}
+		err = check_rights(i, spath, cmar);
+		i++;
 	}
 	return (err);
 }
@@ -112,36 +105,3 @@ int	save_arco(int argc, char **argv, char ***cmar)
 	}
 	return (0);
 }
-
-/*char	*search_path(char **env)
-{
-	int		i;
-	char	*src;
-
-	i = 0;
-	src = "PATH";
-	while (env)
-	{
-		while ((*env)[i] == src[i])
-		{
-			if (i == 3)
-				return (&(*env)[i + 2]);
-			i++;
-		}
-		i = 0;
-		env++;
-	}
-	return ((void *)0);
-}
-
-int	save_argc(char **argv)
-{
-	int	argc;
-
-	argc = 0;
-	while (argv[argc])
-		argc++;
-	if (ch_hdoc(argc, argv))
-		argc--;
-	return (argc);
-}*/

@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:14:19 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/24 21:13:58 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:53:35 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_arg(int argc, char **argv, char **envp, char ***cmar)
 	if (argc < 5)
 		return (1);
 	check_files(argv[1], argv[argc - 1]);
-	if (check_commands(argv, envp, cmar, argc))
+	if (check_commands(argv, envp, cmar))
 		return (errno);
 	return (0);
 }

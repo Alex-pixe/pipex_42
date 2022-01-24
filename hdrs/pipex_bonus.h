@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:12:58 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/22 22:06:06 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:53:13 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		save_arco(int argc, char **argv, char ***cmar);
 int		put_error(char *name, int error);
 int		check_arg(int argc, char **argv, char **envp, char ***cmar);
 int		check_files(char *file1, char *file2);
-int		check_commands(char **argv, char **envp, char ***cmar, int mod);
+int		check_commands(char **argv, char **envp, char ***cmar);
 char	*search_path(char **env);
 void	clean_s(char **spath);
 int		check_rights(int num, char **spath, char ***cmar);
@@ -43,7 +43,7 @@ int		pr_hdoc(int argc, char **argv, char **envp, char ***cmar);
 int		ch_hdoc(int argc, char **argv);
 void	exc_cmdhd2(char *nfile, char **cmar, char **envp, int pfd[][2]);
 void	exc_cmdhd(char **cmar, char **envp, int pfd[][2]);
-int		check_commands2(int mod, int argc, char **spath, char ***cmar);
+int		check_commands2(int argc, char **spath, char ***cmar);
 int		**fprocess_h(int argc);
 void	fprocess_h2(char **argv, char ***cmar, char **envp, int **pfds);
 int		save_j(int value);

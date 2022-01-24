@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   her_doc_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:26:08 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/22 19:45:35 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:54:39 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	pr_hdoc2(char **envp, char **argv, char ***cmar, char **str)
 			return (errno);
 		}
 	}
-	if (check_commands(argv, envp, cmar, -1))
+	if (check_commands(argv, envp, cmar))
 	{
 		clean_d(argc, cmar, *str);
 		return (errno);
