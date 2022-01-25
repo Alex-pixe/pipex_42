@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 21:15:06 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/18 14:16:08 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:53:38 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ int	check_commands(char **argv, char **envp, char ***cmar, int mod)
 	else
 	{
 		err = check_rights(0, spath, cmar);
-		err = check_rights(1, spath, cmar);
+		err += check_rights(1, spath, cmar);
 	}
 	clean_s(spath);
-	if (err)
-		return (err);
-	return (0);
+	return (err);
 }
 
 int	check_rights(int num, char **spath, char ***cmar)

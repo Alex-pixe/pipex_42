@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_commands_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
+/*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:14:44 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/24 21:53:19 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:51:22 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ int	check_commands2(int argc, char **spath, char ***cmar)
 	int	err;
 
 	i = 0;
+	err = 0;
 	while (i < (argc - 3))
 	{
-		err = check_rights(i, spath, cmar);
+		err += check_rights(i, spath, cmar);
 		i++;
 	}
 	return (err);

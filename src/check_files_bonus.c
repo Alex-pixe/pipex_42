@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_files_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
+/*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:14:19 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/24 21:53:35 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:50:16 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 int	check_arg(int argc, char **argv, char **envp, char ***cmar)
 {
+	int	err;
 	if (argc < 5)
 		return (1);
-	check_files(argv[1], argv[argc - 1]);
-	if (check_commands(argv, envp, cmar))
-		return (errno);
-	return (0);
+	err = check_files(argv[1], argv[argc - 1]);
+	err += check_commands(argv, envp, cmar);
+	return (err);
 }
 
 int	check_files(char *file1, char *file2)

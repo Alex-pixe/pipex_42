@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:28:14 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/25 12:05:17 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:48:30 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,11 @@ int	check_arg(int argc, char **argv, char **envp, char ***cmar)
 	err = check_files(argv[1], argv[argc - 1]);
 	if (err)
 	{
-		if (err == 1)
-		{
-			check_commands(argv, envp, cmar, err);
-			return (errno);
-		}
-		else
-		{
-			check_commands(argv, envp, cmar, err);
-			return (errno);
-		}
+		check_commands(argv, envp, cmar, err);
+		return (err);
 	}
 	else if (check_commands(argv, envp, cmar, 0))
-		return (errno);
+		return (4);
 	return (0);
 }
 
