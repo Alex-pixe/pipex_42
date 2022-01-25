@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:28:14 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/18 12:36:12 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:05:17 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_arg(int argc, char **argv, char **envp, char ***cmar)
 			return (errno);
 		}
 	}
-	if (check_commands(argv, envp, cmar, 0))
+	else if (check_commands(argv, envp, cmar, 0))
 		return (errno);
 	return (0);
 }
