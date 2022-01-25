@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:26:08 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/25 12:50:40 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:55:46 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	pr_hdoc2(char **envp, char **argv, char ***cmar, char **str)
 
 	argc = save_argc(argv);
 	*str = save_doc(argv);
-
 	if (!*str)
 	{
 		cr_cmar(cmar, argc - 1);
