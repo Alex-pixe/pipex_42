@@ -6,7 +6,7 @@
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:13:57 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/22 21:43:46 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:33:32 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	fprocess(int argc, char **argv, char ***cmar, char **envp)
 	}
 	cl_pfds(pfds, -1);
 	waitpid(ptmp, &j, 0);
+	cr_pfd(pfds, argc);
 	return (j);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exc_cmd2_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbridget <cbridget@student-21school.ru>    +#+  +:+       +#+        */
+/*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 21:37:55 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/24 21:14:55 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:21:01 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	**cr_pfd(int **pfds, int argc)
 	}
 	else
 	{
+		
 		free(pfds[0]);
 		free(pfds);
 		return ((void *)0);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   her_doc2_bonus.c                                   :+:      :+:    :+:   */
+/*   here_doc2_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:29:17 by cbridget          #+#    #+#             */
-/*   Updated: 2022/01/22 19:35:02 by cbridget         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:49:42 by cbridget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char	*my_realloc(char *str, int *size)
 			return (tmp);
 		}
 		ft_strlcpy(tmp, str, ft_strlen(str) + 1);
+		free(str);
 		*size *= 2;
 	}
 	return (tmp);
