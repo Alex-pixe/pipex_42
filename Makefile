@@ -6,7 +6,7 @@
 #    By: cbridget <cbridget@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 19:40:05 by cbridget          #+#    #+#              #
-#    Updated: 2022/01/25 12:11:19 by cbridget         ###   ########.fr        #
+#    Updated: 2022/01/26 12:49:44 by cbridget         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ = $(addprefix obj/,$(SRC:.c=.o))
 
 BUILD_FOLDER := $(shell mkdir -p obj)
 
-FLAGS = -Wall -Werror -Wextra -g3
+FLAGS = -Wall -Werror -Wextra
 
 CC = cc
 
@@ -37,7 +37,7 @@ all : LIB $(NAME)
 LIB :
 	@$(MAKE) bonus -C libft
 
-$(NAME) : $(OBJ)
+$(NAME) : $(OBJ) libft/libft.a
 	$(CC) $(FLAGS) $(OBJ) libft/libft.a -o $(NAME)
 
 obj/%.o : src/%.c $(HEAD) Makefile
@@ -56,4 +56,8 @@ fclean :
 	rm -f $(NAME)
 	$(MAKE) fclean -C libft
 
-re : fclean all
+re :
+	rm -r obj/*.o
+	rm -f $(NAME)
+	$(MAKE) fclean -C libft
+	$(MAKE)
